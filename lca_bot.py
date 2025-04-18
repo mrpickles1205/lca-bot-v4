@@ -53,7 +53,7 @@ def create_docx_report(product, summary):
     for _, row in df.iterrows():
         row_cells = table.add_row().cells
         for i, val in enumerate(row):
-            row_cells[i].text = str(round(val, 2))
+            row_cells[i].text = str(round(val, 2)) if isinstance(val, (int, float)) else str(val)
 
     doc.add_heading("7. Life Cycle Impact Assessment (LCIA)", level=1)
     doc.add_paragraph("Impact categories include GWP (Global Warming Potential), cumulative energy demand, and water footprint.")
